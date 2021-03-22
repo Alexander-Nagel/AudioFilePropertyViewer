@@ -2,3 +2,6 @@
 - add mp3 support
 - implement list view / table view instead of descriptionLabel/dataLabel
 - implement WAVEFORM Viewer and PLAYER
+
+- OK Implemented fileSize property display.
+- set kilobytes precision to 0 decimals, megabytes precision to 1 decimal, and gigabytes precision to 1 decimal.

@@ -10,6 +10,42 @@ import Foundation
 struct AudioFile {
     var fileName: String?
    // let fileNameExtension: String?
+    var fileSize: Int? {
+        didSet {
+//            let formatter = NumberFormatter()
+//            formatter.groupingSeparator = " "
+//                    formatter.locale = Locale.current //Locale(identifier: "en_US")
+//                    formatter.numberStyle = .decimal
+//                    print(formatter.string(from: 5123430)!)
+            print(fileSize)
+            let bytes = fileSize!.bytes
+            let kilobytes = fileSize!.kilobytes
+            let megabytes = fileSize!.megabytes
+            let gigabytes = fileSize!.gigabytes
+            print("\(bytes)\t\(kilobytes)\t\(megabytes)\t\(gigabytes)")
+            
+            var result: String = ""
+            var unit: String?
+            if (0...999).contains(bytes) {
+                result = String(bytes)
+                unit = "bytes"
+            } else if (0..<1000).contains(Int(kilobytes)) {
+                result = String(kilobytes)
+                unit = "KB"
+            } else if (0..<1000).contains(Int(megabytes)) {
+                result = String(megabytes)
+                unit = "MB"
+            } else {
+                result = String(gigabytes)
+                unit = "GB"
+            }
+            self.fileSizeString = result
+            self.fileSizeUnit = unit
+            print("fileSizeString = \(fileSizeString)")
+        }
+    }
+    var fileSizeString: String?
+    var fileSizeUnit: String?
     var mediaType: String?
     var mediaTypeLong: String? {
         if let mT = mediaType {
@@ -107,4 +143,34 @@ let kAudioFileFormats = ["lpcm": AFFD("Linear PCM", """
                          "alac": AFFD("Apple Lossless", "")
 ]
 
-let kAcceptedFileFormats = ["wav", "mp3", "ogg", "aif", "aiff", "m4a"]
+let kAcceptedFileFormats = ["wav", /*"mp3", "ogg", */ "aif", "aiff", /* "m4a" */]
+
+extension Int {
+    var bytes: Int { self }
+    
+    //
+    //  Binary / IEC Prefixes
+    //
+    var kibibytes: Double {
+        return Double(bytes) / 1_024
+    }
+    var mebibytes: Double {
+        return Double(kibibytes) / 1_024
+    }
+    var gibibytes: Double {
+        return Double(mebibytes) / 1_024
+    }
+    
+    //
+    // SI Prefixes
+    //
+    var kilobytes: Double {
+        return Double(bytes) / 1_000
+    }
+    var megabytes: Double {
+        return Double(kilobytes) / 1_000
+    }
+    var gigabytes: Double {
+        return Double(megabytes) / 1_000
+    }
+}

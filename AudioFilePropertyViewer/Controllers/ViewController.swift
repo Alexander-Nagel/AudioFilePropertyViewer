@@ -68,16 +68,19 @@ class ViewController: NSViewController, DragViewDelegate {
     
     func updateUI() {
         
-        let durationSamples = currentAudioFile.durationSamplesString ?? "-"
-        let durationMS = currentAudioFile.durationMSString ?? "-"
-        let mediaType = currentAudioFile.mediaTypeLong ?? "-"
-        let mediaTypeDesc = currentAudioFile.mediaTypeDescription ?? "-"
+        let fileSize = currentAudioFile.fileSizeString ?? " "
+        let fileSizeUnit = currentAudioFile.fileSizeUnit ?? " "
+        let durationSamples = currentAudioFile.durationSamplesString ?? " "
+        let durationMS = currentAudioFile.durationMSString ?? " "
+        let mediaType = currentAudioFile.mediaTypeLong ?? " "
+        let mediaTypeDesc = currentAudioFile.mediaTypeDescription ?? " "
         print("XXX\(mediaTypeDesc)")
-        let fileName = currentAudioFile.fileName ?? "-"
+        let fileName = currentAudioFile.fileName ?? " "
         
         descriptionLabel.stringValue = String("""
             File Name:
             Audio Format:
+            File Size:
             Channels:
             Bits per Channel:
             Samplerate:
@@ -89,6 +92,7 @@ class ViewController: NSViewController, DragViewDelegate {
         dataLabel.stringValue = String("""
             \(fileName)
             \(mediaType)
+            \(fileSize) \(fileSizeUnit)
             \(currentAudioFile.channels)
             \(currentAudioFile.bitsPerChannel)
             \(String(format: "%6.0f" ,currentAudioFile.sampleRate)) Hz
@@ -162,6 +166,14 @@ extension ViewController {
             //print("XXX:\(mediaSubType)")
         }
         
+        //
+        // Extract file size
+        //
+        if let fileSize = audioFileURL.fileSize {
+            currentAudioFile.fileSize = fileSize
+            print("ZZZ:\(fileSize)")
+        }
+        
         
         // engine.attach(player)
         // engine.connect(player, to: engine.mainMixerNode, format: audioFormat)
@@ -175,5 +187,13 @@ extension ViewController {
         //        }
         
         
+    }
+}
+
+public extension URL {
+
+    var fileSize: Int? {
+        let value = try? resourceValues(forKeys: [.fileSizeKey])
+        return value?.fileSize
     }
 }

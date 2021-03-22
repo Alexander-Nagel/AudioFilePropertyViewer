@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FABCD91E2609142A00AA5FE9 /* to_do.txt in Resources */ = {isa = PBXBuildFile; fileRef = FABCD91D2609142A00AA5FE9 /* to_do.txt */; };
 		FACC872A2607AF190032A703 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACC87292607AF190032A703 /* AppDelegate.swift */; };
 		FACC872C2607AF190032A703 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACC872B2607AF190032A703 /* ViewController.swift */; };
 		FACC872E2607AF1C0032A703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACC872D2607AF1C0032A703 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FABCD91D2609142A00AA5FE9 /* to_do.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = to_do.txt; sourceTree = SOURCE_ROOT; };
 		FACC87262607AF190032A703 /* AudioFilePropertyViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioFilePropertyViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACC87292607AF190032A703 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACC872B2607AF190032A703 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				FACC874C2607D9AC0032A703 /* Views */,
 				FACC872D2607AF1C0032A703 /* Assets.xcassets */,
 				FACC87322607AF1C0032A703 /* Info.plist */,
+				FABCD91D2609142A00AA5FE9 /* to_do.txt */,
 				FACC87332607AF1C0032A703 /* AudioFilePropertyViewer.entitlements */,
 			);
 			path = AudioFilePropertyViewer;
@@ -127,7 +130,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FACC87212607AF190032A703 /* Build configuration list for PBXProject "AudioFilePropertyViewer" */;
+			buildConfigurationList = FACC87212607AF190032A703 /* Build configuration list for PBXProject "Audio File Property Viewer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,6 +155,7 @@
 			files = (
 				FACC872E2607AF1C0032A703 /* Assets.xcassets in Resources */,
 				FACC87312607AF1C0032A703 /* Main.storyboard in Resources */,
+				FABCD91E2609142A00AA5FE9 /* to_do.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +347,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FACC87212607AF190032A703 /* Build configuration list for PBXProject "AudioFilePropertyViewer" */ = {
+		FACC87212607AF190032A703 /* Build configuration list for PBXProject "Audio File Property Viewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FACC87342607AF1C0032A703 /* Debug */,
