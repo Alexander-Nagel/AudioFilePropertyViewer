@@ -72,6 +72,7 @@ class ViewController: NSViewController, DragViewDelegate {
         let durationMS = currentAudioFile.durationMSString ?? "-"
         let mediaType = currentAudioFile.mediaTypeLong ?? "-"
         let mediaTypeDesc = currentAudioFile.mediaTypeDescription ?? "-"
+        print("XXX\(mediaTypeDesc)")
         let fileName = currentAudioFile.fileName ?? "-"
         
         descriptionLabel.stringValue = String("""
@@ -83,7 +84,6 @@ class ViewController: NSViewController, DragViewDelegate {
             Duration:
             Duration:
             Samples:
-
             Format Description:
             """)
         dataLabel.stringValue = String("""
@@ -95,7 +95,6 @@ class ViewController: NSViewController, DragViewDelegate {
             \(durationMS)
             \(durationSamples)
             \(currentAudioFile.lengthInFrames)
-
             \(mediaTypeDesc)
             """)
     }
