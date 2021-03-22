@@ -1,0 +1,4 @@
+- supported so far: WAV, AIF, AIFF
+- add mp3 support
+- implement list view / table view instead of descriptionLabel/dataLabel
+- implement WAVEFORM Viewer and PLAYER
