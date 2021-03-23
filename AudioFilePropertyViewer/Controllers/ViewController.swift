@@ -72,8 +72,8 @@ class ViewController: NSViewController, DragViewDelegate {
         let fileSizeUnit = currentAudioFile.fileSizeUnit ?? " "
         let durationSamples = currentAudioFile.durationSamplesString ?? " "
         let durationMS = currentAudioFile.durationMSString ?? " "
-        let mediaType = currentAudioFile.mediaTypeLong ?? " "
-        let mediaTypeDesc = currentAudioFile.mediaTypeDescription ?? " "
+        let mediaType = currentAudioFile.mediaType_medium ?? " "
+        let mediaTypeDesc = currentAudioFile.mediaType_long ?? " "
         print("XXX\(mediaTypeDesc)")
         let fileName = currentAudioFile.fileName ?? " "
         
@@ -162,7 +162,7 @@ extension ViewController {
         // https://developer.apple.com/documentation/coremedia/cmformatdescription/mediasubtype
         //
         if let mediaSubType = audioFile?.fileFormat.formatDescription.mediaSubType  {
-            currentAudioFile.mediaType = String(mediaSubType.rawValue)
+            currentAudioFile.mediaType_short = String(mediaSubType.rawValue)
             //print("XXX:\(mediaSubType)")
         }
         

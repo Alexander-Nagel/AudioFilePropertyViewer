@@ -22,6 +22,7 @@ struct AudioFile {
             let kilobytes = fileSize!.kilobytes
             let megabytes = fileSize!.megabytes
             let gigabytes = fileSize!.gigabytes
+            
             print("\(bytes)\t\(kilobytes)\t\(megabytes)\t\(gigabytes)")
             
             var result: String = ""
@@ -46,17 +47,18 @@ struct AudioFile {
     }
     var fileSizeString: String?
     var fileSizeUnit: String?
-    var mediaType: String?
-    var mediaTypeLong: String? {
-        if let mT = mediaType {
-            let result = kAudioFileFormats[mT, default: AFFD("", "")].short
+    var mediaType_short: String?
+    var mediaType_medium: String? {
+        if let mT = mediaType_short {
+            let result = kAudioFileFormats[mT, default: AFFD("", "")].medium
             return result
         } else {
             return nil
         }
     }
-    var mediaTypeDescription: String? {
-        if let mT = mediaType {
+    
+    var mediaType_long: String? {
+        if let mT = mediaType_short {
             let result = kAudioFileFormats[mT, default: AFFD("", "")].long
             return result
         } else {
@@ -118,20 +120,26 @@ struct AudioFileTime {
 }
 
 struct AudioFileFormatDescription {
-    var short: String
+    var medium: String
     var long: String
     init(_ short: String, _ long: String) {
-        self.short = short
+        self.medium = short
         self.long = long
     }
 }
 
 typealias AFFD = AudioFileFormatDescription
 
+//
+// Audio format info from:
+// https://wiki.multimedia.cx/
+//
 let kAudioFileFormats = ["lpcm": AFFD("Linear PCM", """
                             Noncompressed audio data format with one frame per packet.
                             """),
-                         "ima4": AFFD("Apple IMA4", ""),
+                         "ima4": AFFD("Apple IMA4", """
+                            IMA4 file type (associated with ADPCM algorithm by Interactive Multimedia Association) is a cross platform audio compression offering 4:1 compression ratio on 16-bit audio files. In the Windwos world it's known as ADPCM.
+                            """),
                          "aac": AFFD("MPEG4 AAC", ""),
                          "MAC3": AFFD("MACE3", ""),
                          "MAC6": AFFD("MACE6", ""),
@@ -140,10 +148,10 @@ let kAudioFileFormats = ["lpcm": AFFD("Linear PCM", """
                          ".mp1": AFFD("MPEG Layer 1", ""),
                          ".mp2": AFFD("MPEG Layer 2", ""),
                          ".mp3": AFFD("MPEG Layer 3", ""),
-                         "alac": AFFD("Apple Lossless", "")
+                         "alac": AFFD("Apple Lossless", "Audio encoding format developed by Apple for lossless data compression of digital music. Filename extensions: .m4a .caf")
 ]
 
-let kAcceptedFileFormats = ["wav", /*"mp3", "ogg", */ "aif", "aiff", /* "m4a" */]
+let kAcceptedFileFormats = ["wav", /*"mp3", "ogg", */ "aif", "aiff", "m4a"]
 
 extension Int {
     var bytes: Int { self }
