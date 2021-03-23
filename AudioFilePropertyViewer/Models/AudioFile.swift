@@ -9,44 +9,54 @@ import Foundation
 
 struct AudioFile {
     var fileName: String?
-   // let fileNameExtension: String?
+    // let fileNameExtension: String?
     var fileSize: Int? {
         didSet {
-//            let formatter = NumberFormatter()
-//            formatter.groupingSeparator = " "
-//                    formatter.locale = Locale.current //Locale(identifier: "en_US")
-//                    formatter.numberStyle = .decimal
-//                    print(formatter.string(from: 5123430)!)
-            print(fileSize)
+            //print(fileSize)
             let bytes = fileSize!.bytes
             let kilobytes = fileSize!.kilobytes
             let megabytes = fileSize!.megabytes
             let gigabytes = fileSize!.gigabytes
+            let formatter = NumberFormatter()
+            
+            //
+            // Format bytes display to have thousands separators
+            //
+            formatter.groupingSeparator = ","
+            formatter.locale = Locale.current //Locale(identifier: "en_US")
+            formatter.numberStyle = .decimal
+            let formattedBytes = formatter.string(from: NSNumber(value: bytes))
             
             print("\(bytes)\t\(kilobytes)\t\(megabytes)\t\(gigabytes)")
             
             var result: String = ""
-            var unit: String?
+            var unit: String = ""
+            
             if (0...999).contains(bytes) {
                 result = String(bytes)
-                unit = "bytes"
+                unit = "Bytes"
             } else if (0..<1000).contains(Int(kilobytes)) {
-                result = String(kilobytes)
+                result = String(format: "%.1f", kilobytes)
                 unit = "KB"
             } else if (0..<1000).contains(Int(megabytes)) {
-                result = String(megabytes)
+                result = String(format: "%.1f", megabytes)
                 unit = "MB"
             } else {
-                result = String(gigabytes)
+                result = String(format: "%.1f", gigabytes)
                 unit = "GB"
             }
+            
+            if unit != "Bytes" {
+                result += " \(unit) (\(formattedBytes!) Bytes)"
+            } else {
+                result += " \(unit)"
+            }
+
             self.fileSizeString = result
-            self.fileSizeUnit = unit
-            print("fileSizeString = \(fileSizeString)")
+            //print("fileSizeString = \(fileSizeString)")
         }
     }
     var fileSizeString: String?
-    var fileSizeUnit: String?
     var mediaType_short: String?
     var mediaType_medium: String? {
         if let mT = mediaType_short {
@@ -100,7 +110,7 @@ struct AudioFile {
     }
     var channels: UInt32 = 0
     var bitsPerChannel: UInt32 = 0
-  
+    
     mutating func secToHMS (secondsIn: Int) {
         var remainder: Int
         duration.hours = secondsIn / 3600

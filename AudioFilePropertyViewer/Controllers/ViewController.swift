@@ -69,7 +69,6 @@ class ViewController: NSViewController, DragViewDelegate {
     func updateUI() {
         
         let fileSize = currentAudioFile.fileSizeString ?? " "
-        let fileSizeUnit = currentAudioFile.fileSizeUnit ?? " "
         let durationSamples = currentAudioFile.durationSamplesString ?? " "
         let durationMS = currentAudioFile.durationMSString ?? " "
         let mediaType = currentAudioFile.mediaType_medium ?? " "
@@ -92,7 +91,7 @@ class ViewController: NSViewController, DragViewDelegate {
         dataLabel.stringValue = String("""
             \(fileName)
             \(mediaType)
-            \(fileSize) \(fileSizeUnit)
+            \(fileSize)
             \(currentAudioFile.channels)
             \(currentAudioFile.bitsPerChannel)
             \(String(format: "%6.0f" ,currentAudioFile.sampleRate)) Hz
